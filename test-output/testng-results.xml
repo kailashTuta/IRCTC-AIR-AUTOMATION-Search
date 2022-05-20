@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-05-19T15:21:39 IST" name="Regression" finished-at="2022-05-19T15:21:58 IST" duration-ms="18934">
+    <groups>
+    </groups>
+    <test started-at="2022-05-19T15:21:39 IST" name="SmokeTest" finished-at="2022-05-19T15:21:58 IST" duration-ms="18934">
+      <class name="testing.SearchFlights">
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:testing.SearchFlights@7ec7ffd3]" started-at="2022-05-19T15:21:39 IST" name="beforeTest" finished-at="2022-05-19T15:21:44 IST" duration-ms="5647" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method signature="searchFlights(java.lang.String,java.lang.String)[pri:0, instance:testing.SearchFlights@7ec7ffd3]" started-at="2022-05-19T15:21:44 IST" name="searchFlights" finished-at="2022-05-19T15:21:56 IST" duration-ms="11716" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Hyd]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Pune]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchFlights -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:testing.SearchFlights@7ec7ffd3]" started-at="2022-05-19T15:21:56 IST" name="afterTest" finished-at="2022-05-19T15:21:58 IST" duration-ms="1499" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- testing.SearchFlights -->
+    </test> <!-- SmokeTest -->
+  </suite> <!-- Regression -->
+</testng-results>

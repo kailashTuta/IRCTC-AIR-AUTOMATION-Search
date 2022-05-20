@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Regression">
+	<parameter name="from" value="Hyd" />
+	<parameter name="to" value="Pune" />
+	<test name="SmokeTest">
+		<classes>
+			<class name="testing.SearchFlights">
+			</class>
+		</classes>
+	</test> <!-- SmokeTest -->
+</suite> <!-- Regression -->
