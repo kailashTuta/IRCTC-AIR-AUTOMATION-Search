@@ -1,12 +1,6 @@
 package testing;
 
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.AfterTest;
-
-
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,52 +10,54 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SearchFlights {
+public class Search_Flights {
 	private static WebDriver driver;
-	private JavascriptExecutor js;
+	private static JavascriptExecutor js;
 
-	@BeforeTest
-	public void beforeTest() {
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 		System.setProperty("webdriver.chrome.driver", "F:/IBM Training/Jars/chromedriver_win32/chromedriver.exe");
 		driver = new ChromeDriver();
 		js = (JavascriptExecutor) driver;
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 	}
 
-	@AfterTest
-	public void afterTest() {
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 		driver.close();
 		driver.quit();
 	}
 
 	@Test
-	@Parameters({"from", "to"})
-	public void searchFlights(String from, String to){
+	public void searchFlights() {
 		String baseURL = "https://www.air.irctc.co.in/";
 		driver.get(baseURL);
 
 		// Verifying URL
 		String actual = driver.getCurrentUrl();
 		String expected = "https://www.air.irctc.co.in/";
-		assertEquals(actual, expected);
+		assertEquals(expected, actual);
 
 		// Maximizing Window
 		driver.manage().window().maximize();
 
 		// Selecting From and To Cities
-		driver.findElement(By.name("From")).sendKeys(from);
+		driver.findElement(By.name("From")).sendKeys("Hyd");
 		WebElement From = driver.findElement(By.xpath("//div[text() = 'Hyderabad (HYD)']"));
 		js.executeScript("arguments[0].click();", From);
 
-		driver.findElement(By.name("To")).sendKeys(to);
+		driver.findElement(By.name("To")).sendKeys("Pune");
 		driver.findElement(By.xpath("//ul[@id='ui-id-2']/li/div[starts-with(@id, 'ui-id-') and text() = 'Pune (PNQ)']"))
-				.click();
+		.click();
 
 		// Selecting Origin Date
 		WebElement date = new WebDriverWait(driver, Duration.ofSeconds(40))
@@ -76,7 +72,9 @@ public class SearchFlights {
 		sc.selectByIndex(1);
 
 		// Clicking Search Button
-		driver.findElement(By.xpath("//body/app-root[1]/app-index[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/form[1]/div[6]/button[1]")).click();
+		driver.findElement(By.xpath(
+				"//body/app-root[1]/app-index[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/form[1]/div[6]/button[1]"))
+		.click();
 
 		// Verifying Cities and Date From Previous Page
 		String FromCity = driver.findElement(By.xpath("//input[@id='stationFrom']")).getAttribute("value");
@@ -104,7 +102,8 @@ public class SearchFlights {
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File sourceFile = ts.getScreenshotAs(OutputType.FILE);
 		String FileSuffix = new SimpleDateFormat("ddMMyyyyhhmmss").format(new Date());
-		File destinationFile = new File("F:\\IBM Training\\Java Programs\\IRCTC-AIR\\screenshots\\screenshots" + FileSuffix + ".png");
+		File destinationFile = new File(
+				"F:\\IBM Training\\Java Programs\\IRCTC-AIR\\screenshots\\screenshots" + FileSuffix + ".png");
 
 		try {
 			FileUtils.copyFile(sourceFile, destinationFile);
@@ -113,4 +112,5 @@ public class SearchFlights {
 		}
 
 	}
+
 }
