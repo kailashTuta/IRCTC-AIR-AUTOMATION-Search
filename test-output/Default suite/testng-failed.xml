@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testing.SearchFlights">
+      <class name="testing.TestNGRunner$RunTestNGTest">
         <methods>
-          <include name="afterTest"/>
-          <include name="searchFlights"/>
-          <include name="beforeTest"/>
+          <include name="setUpClass"/>
+          <include name="runScenario" invocation-numbers="0"/>
+          <include name="tearDownClass"/>
         </methods>
-      </class> <!-- testing.SearchFlights -->
+      </class> <!-- testing.TestNGRunner$RunTestNGTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
